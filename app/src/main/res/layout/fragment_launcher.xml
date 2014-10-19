@@ -2,15 +2,372 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".LauncherActivity$PlaceholderFragment">
 
-    <TextView
-        android:text="@string/hello_world"
+    <Switch
+        android:id="@+id/armSwitch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/horizontalRule1"
+        android:checked="false"
+        android:onClick="onArmLauncherClicked"
+        android:text="Arm Launcher!"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/horizontalRule1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/armSwitch"
+        android:layout_marginTop="10dp"
+        android:background="#000000" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/horizontalRule1"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:id="@+id/fireworkList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:padding="0dp">
+
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework1"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus1"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/firework_list_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework2"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus2"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/firework_list_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework3"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus3"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/firework_list_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework4"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus4"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/firework_list_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework5"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus5"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow6"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/firework_list_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework6"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus6"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow7"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/firework_list_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework7"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus7"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fireworkListRow8"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/firework_list_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fireworkName8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:singleLine="true"
+                    android:text="@string/firework8"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <ImageView
+                    android:id="@+id/fireworkStatus8"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/firework_list_firework_status_margin"
+                    android:contentDescription="@string/firework_status"
+                    android:src="@drawable/red" />
+
+                <Button
+                    android:id="@+id/btnLaunchFirework8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onLaunchFirework"
+                    android:text="@string/launch" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

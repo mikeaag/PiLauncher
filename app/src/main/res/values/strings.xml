@@ -4,5 +4,15 @@
     <string name="app_name">PiLauncher</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="firework_status">Firework Status</string>
+    <string name="launch">Launch</string>
+    <string name="firework1">Firework 1</string>
+    <string name="firework2">Firework 2</string>
+    <string name="firework3">Firework 3</string>
+    <string name="firework4">Firework 4</string>
+    <string name="firework5">Firework 5</string>
+    <string name="firework6">Firework 6</string>
+    <string name="firework7">Firework 7</string>
+    <string name="firework8">Firework 8</string>
 
 </resources>
