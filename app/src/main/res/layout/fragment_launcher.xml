@@ -16,7 +16,7 @@
         android:layout_alignStart="@+id/horizontalRule1"
         android:checked="false"
         android:onClick="onArmLauncherClicked"
-        android:text="Arm Launcher!"
+        android:text="@string/arm_launcher"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 

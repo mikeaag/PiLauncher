@@ -5,12 +5,16 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 public class LauncherActivity extends Activity {
@@ -41,6 +45,7 @@ public class LauncherActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            Log.v("action_settings", "yep");
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -127,16 +132,31 @@ public class LauncherActivity extends Activity {
         boolean isArmed = ((Switch) armSwitch).isChecked();
 
         if (isArmed) {
-            launchFireworkMessage(FireworkNumber);
+            launchFirework(FireworkNumber);
         } else {
             armLauncherFirstMessage();
         }
     }
 
-    public void launchFireworkMessage(Integer FireworkNumber) {
+    public void launchFirework(Integer FireworkNumber) {
+
+        String url = "http://192.168.1.85/PiLaunchCommand/launch.php?fireworkId=" + FireworkNumber.toString();
+
+        HttpGetter myHttpGetter = new HttpGetter();
+        try {
+            myHttpGetter.execute(new URI(url));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        //launchFireworkMessage(FireworkNumber, data);
+
+    }
+
+    public void launchFireworkMessage(Integer FireworkNumber, String message) {
         new AlertDialog.Builder(this)
                 .setTitle("Firework " + FireworkNumber.toString())
-                .setMessage("Firework " + FireworkNumber.toString() + " has been launched!")
+                .setMessage(message)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
