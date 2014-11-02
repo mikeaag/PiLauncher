@@ -1,5 +1,8 @@
 package uk.co.xenonsoft.pilauncher;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -17,10 +20,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 
-/**
- * Created by Mike on 25/10/2014.
- */
 public class HttpGetter extends AsyncTask<URI, Void, String> {
+    private final Context context;
+
+    public HttpGetter(Context context) {
+        this.context = context;
+    }
 
     @Override
     protected String doInBackground(URI... uris) {
@@ -46,6 +51,7 @@ public class HttpGetter extends AsyncTask<URI, Void, String> {
                 return builder.toString();
             } else {
                 Log.e("Getter", "Failed to download file");
+                return "Failed to load URL";
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -57,8 +63,17 @@ public class HttpGetter extends AsyncTask<URI, Void, String> {
     }
 
     protected void onPostExecute(String message) {
-        // TODO: check this.exception
-        // TODO: do something with the feed
+        new AlertDialog.Builder(this.context)
+                .setTitle("Launch Firework Failed")
+                .setMessage("The request to launch the firework returned an error")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 }

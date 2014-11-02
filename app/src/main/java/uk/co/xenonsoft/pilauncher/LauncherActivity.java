@@ -162,8 +162,8 @@ public class LauncherActivity extends Activity {
         } else {
             finalUrl = replacePlaceHolderWithId(defaultUrl, FireworkNumber);
         }
-
-        HttpGetter myHttpGetter = new HttpGetter();
+        Log.v("url", finalUrl);
+        HttpGetter myHttpGetter = new HttpGetter(this);
         try {
             myHttpGetter.execute(new URI(finalUrl));
         } catch (URISyntaxException e) {
