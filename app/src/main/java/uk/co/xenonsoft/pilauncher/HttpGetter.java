@@ -51,7 +51,7 @@ public class HttpGetter extends AsyncTask<URI, Void, String> {
                 return builder.toString();
             } else {
                 Log.e("Getter", "Failed to download file");
-                return "Failed to load URL";
+                return "The request to launch the firework returned an error";
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -64,8 +64,8 @@ public class HttpGetter extends AsyncTask<URI, Void, String> {
 
     protected void onPostExecute(String message) {
         new AlertDialog.Builder(this.context)
-                .setTitle("Launch Firework Failed")
-                .setMessage("The request to launch the firework returned an error")
+                .setTitle("Launch Firework Status")
+                .setMessage(message)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
