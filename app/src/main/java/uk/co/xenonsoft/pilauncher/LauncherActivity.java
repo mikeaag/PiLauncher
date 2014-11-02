@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,10 +46,19 @@ public class LauncherActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Log.v("action_settings", "yep");
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                getFragmentManager().beginTransaction().replace(R.id.container, new PrefsFragment()).addToBackStack(null).commit();
+                Log.v("action_settings", "Clicked!");
+                //return true;
+                break;
+
+            case R.id.action_reset:
+                Log.v("action_reset", "Clicked!");
+                //return true;
+                break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -140,31 +151,29 @@ public class LauncherActivity extends Activity {
 
     public void launchFirework(Integer FireworkNumber) {
 
-        String url = "http://192.168.1.85/PiLaunchCommand/launch.php?fireworkId=" + FireworkNumber.toString();
+        String finalUrl;
+        String defaultUrl = "http://192.168.1.85/PiLaunchCommand/Launch?firework=##ID##";
+
+        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String preferenceUrl = getPrefs.getString("url", defaultUrl);
+
+        if (!preferenceUrl.equals("")) {
+            finalUrl = replacePlaceHolderWithId(preferenceUrl, FireworkNumber);
+        } else {
+            finalUrl = replacePlaceHolderWithId(defaultUrl, FireworkNumber);
+        }
 
         HttpGetter myHttpGetter = new HttpGetter();
         try {
-            myHttpGetter.execute(new URI(url));
+            myHttpGetter.execute(new URI(finalUrl));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
-        //launchFireworkMessage(FireworkNumber, data);
-
     }
 
-    public void launchFireworkMessage(Integer FireworkNumber, String message) {
-        new AlertDialog.Builder(this)
-                .setTitle("Firework " + FireworkNumber.toString())
-                .setMessage(message)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_info)
-                .show();
+    public String replacePlaceHolderWithId(String url, Integer id) {
+        return url.replaceAll("##ID##", id.toString());
     }
 
     public void armLauncherFirstMessage() {
@@ -192,8 +201,7 @@ public class LauncherActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_launcher, container, false);
-            return rootView;
+            return inflater.inflate(R.layout.fragment_launcher, container, false);
         }
     }
 

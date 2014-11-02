@@ -4,6 +4,7 @@
     <string name="app_name">PiLauncher</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_reset">Reset</string>
+    <string name="action_settings">Settings</string>
     <string name="firework_status">Firework Status</string>
     <string name="launch">Launch</string>
     <string name="firework1">Firework 1</string>
